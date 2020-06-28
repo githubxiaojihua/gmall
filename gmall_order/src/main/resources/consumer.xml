@@ -13,11 +13,9 @@
 	<dubbo:application name="order-service-consumer"></dubbo:application>
 	
 	<dubbo:registry address="zookeeper://192.168.25.132:2181"></dubbo:registry>
-	
-	<!--  配置本地存根-->
-	
-	<!--声明需要调用的远程服务的接口；生成远程服务代理  -->
-	<!-- 
+
+	<!-- 声明需要调用的远程服务接口：dubbo会生成远程服务的代理-->
+	<!--相关配置遵循以下优先原则：
 		1）、精确优先 (方法级优先，接口级次之，全局配置再次之)
 		2）、消费者设置优先(如果级别一样，则消费方优先，提供方次之)
 	-->
@@ -25,7 +23,7 @@
 	<!-- retries="":重试次数，不包含第一次调用，0代表不重试-->
 	<!-- 幂等（设置重试次数）【查询、删除、修改】、非幂等（不能设置重试次数）【新增】 -->
 	<dubbo:reference interface="com.xiaojihua.gmall.service.UserService"
-		id="userService" timeout="5000" retries="3" version="*">
+		id="userService" timeout="5000" retries="3" version="2.0.0">
 		<!-- <dubbo:method name="getUserAddressList" timeout="1000"></dubbo:method> -->
 	</dubbo:reference>
 		
